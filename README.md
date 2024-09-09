@@ -5,9 +5,11 @@ Problema "Bit Array", Hackerrank, C++
 
 Recibidos 4 enteros: N, S, P, Q. Debes utilizarlos para crear la siguiente secuencia con el pseudocódigo que se muestra a continuación.
 
+```
 a[0] = S (modulo 2^31)
 for i = 1 to N-1
     a[i] = a[i-1]*P+Q (modulo 2^31) 
+```
 
 La tarea consiste en calcular el número de diferentes enteros en la secuencia.
 Your task is to calculate the number of distinct integers in the sequence

@@ -12,12 +12,10 @@ for i = 1 to N-1
 ```
 
 La tarea consiste en calcular el número de diferentes enteros en la secuencia.
-Your task is to calculate the number of distinct integers in the sequence
 
 ### **Formato de entrada**
 
 Cuatro enteros separados por espacio en una línea, N, S, P y Q respectivamente.
-Four space separated integers on a single line,
 
 ### **Formato de salida**
 
@@ -25,6 +23,13 @@ Un único entero que indica el número de diferentes enteros en la secuencia.
 
 ## Primera aproximación
 ```c++
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
 int main() {
@@ -51,8 +56,17 @@ int main() {
 }
 
 ```
-## Segunda aproximación
+Este enfoque, tal vez el más intuitivo genera una serie de problemas:
+- Si N es lo suficientemente grande, al reservar espacio a[n] provocará un error de tipo "Segmentation Fault".
+  Además, si no fallase cuando tratasemos de ordenar el vector el tiempo de ejecución tiende a infinito.
 
+- Por otra parte, continuamente se está realizando la operación
+  ```
+  a[i] = a[i-1]*p + q%(int)pow(2,31)
+  ```
+  con el consecuente gasto de memoria.
+  
+## Segunda aproximación
 ```c++
 
 #include <set>
@@ -79,7 +93,11 @@ int main() {
     return 0;
 }
 
-``` 
+```
+En esta versión elegimos el contenedor **set** porque solamente almacena elementos diferentes. Por tanto, si tratamos de insertar todos los elementos que se generan en el bucle, una vez haya terminado solamente contendrá aquellos elementos distintos. Con mostrar por pantalla el tamaño del set ya tenemos la solución.
+
+Sin embargo, en varios test el tiempo de ejecución excede el límite permitido, por lo que la opción de almacenar todos los elementos generados sigue siendo demasiado costosa.
+
 ## Solución
 
 ```c++
@@ -127,3 +145,4 @@ int main() {
 }
 
 ```
+Para esta versión hemos utilizado el algoritmo [Floyd's Cycle Detection](https://www.geeksforgeeks.org/floyds-cycle-finding-algorithm/)
